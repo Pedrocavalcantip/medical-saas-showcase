@@ -58,7 +58,97 @@ graph TD
     C -->|Valid Request| D[Business Services]
     D -->|Prisma ORM| E[(PostgreSQL)]
     D -->|Upload Stream| F[Cloudinary Storage]
-Frontend LayerCategoryTechnologiesResponsibilityUI FrameworkReact.jsComponent-based user interface for clinical workflowsStylingTailwind CSSUtility-first styling for rapid, consistent UI deliveryIconsLucide ReactLightweight, consistent iconographyData AccessAxiosTyped HTTP integration with backend APIsNavigationReact Router DOMRoute-level composition and guarded flowsBackend LayerCategoryTechnologiesResponsibilityRuntimeNode.jsHigh-performance JavaScript runtime for API servicesFrameworkExpress.jsRouting, middleware orchestration, HTTP lifecycleAuthenticationJWT + bcrypt.jsToken-based auth and password hashingUpload HandlingMulterControlled multipart parsing and validationAPI DocumentationSwagger/OpenAPIDiscoverable and contract-oriented API docsData & Cloud LayerCategoryTechnologiesResponsibilityDatabasePostgreSQLRelational persistence with transactional reliabilityORMPrismaType-safe queries, migrations, and schema evolutionFile StorageCloudinarySecure storage/access for medical record attachmentsTechnical Decisions & Best Practices1. Layered Architecture (MVC + Service Abstraction)Controllers are focused on request/response orchestration.Business rules are isolated in service layers.Persistence concerns are encapsulated through Prisma-based data access.This separation reduces coupling, improves testability, and supports safer refactoring.2. Security By DesignPasswords are hashed with bcrypt.js.Stateless authentication is handled with JWT.Role-based access controls constrain sensitive operations.File upload paths enforce MIME/type and size validation.Error handling avoids leaking sensitive internals.The security model was designed to be aligned with medical-data protection expectations (LGPD/HIPAA mindset).3. API Contract ValidationRequest payload validation is enforced before business execution.Domain constraints are checked at both API and persistence boundaries.Consistent response structures simplify frontend consumption and observability.4. Test-Driven Quality MindsetCore logic is covered by unit tests in Jest.Critical flows (auth, records, file handling) are tested against expected and edge-case scenarios.Key Features🔐 Secure role-based authentication with JWT and bcrypt.js.👥 Complete CRUD for patients with strict input and domain validation.🩺 Complete CRUD for medical records with structured clinical information.📎 Secure upload pipeline for exam/attachment files linked to records.⚡ Fluid user experience with real-time search and responsive navigation.🕒 Chronological consultation timeline for fast medical history review.Public Disclosure Boundaries (Security-First)This showcase intentionally shares only artifacts that are safe for public review.Included in this public repositorySanitized architecture and engineering decisions.Redacted API examples and endpoint contracts.Isolated code snippets that do not reveal proprietary logic.Never exposed publiclyUI Screenshots or screen recordings (to protect proprietary UX workflows).Production credentials, secrets, tokens, or environment values.Real patient data or metadata that could enable re-identification.Internal infrastructure details (private hosts, bucket IDs, firewall rules).Live Demonstration (Upon Request)To ensure absolute compliance with data privacy and to protect the proprietary UI/UX workflows of this commercial product, no screenshots or screen recordings are publicly shared in this repository.However, I am fully available to provide a live, guided demonstration of the application running locally during a technical interview. In this live demo (using strictly synthetic data), I can showcase:The role-aware login and access flow.Real-time patient search and medical timeline navigation.The exam attachment upload pipeline.The underlying codebase structure and database queries.API Documentation (Showcase-Safe)The API is documented using Swagger/OpenAPI with a sanitized, recruiter-friendly contract.Note: The full interactive Swagger UI is kept behind authentication in the production environment. A local instance of the OpenAPI documentation can be presented during the live technical demonstration.OpenAPI Example (Sanitized)YAMLpaths:
+```
+
+### Frontend Layer
+
+| Category | Technologies | Responsibility |
+| --- | --- | --- |
+| UI Framework | React.js | Component-based user interface for clinical workflows |
+| Styling | Tailwind CSS | Utility-first styling for rapid, consistent UI delivery |
+| Icons | Lucide React | Lightweight, consistent iconography |
+| Data Access | Axios | Typed HTTP integration with backend APIs |
+| Navigation | React Router DOM | Route-level composition and guarded flows |
+
+### Backend Layer
+
+| Category | Technologies | Responsibility |
+| --- | --- | --- |
+| Runtime | Node.js | High-performance JavaScript runtime for API services |
+| Framework | Express.js | Routing, middleware orchestration, HTTP lifecycle |
+| Authentication | JWT + bcrypt.js | Token-based auth and password hashing |
+| Upload Handling | Multer | Controlled multipart parsing and validation |
+| API Documentation | Swagger/OpenAPI | Discoverable and contract-oriented API docs |
+
+### Data & Cloud Layer
+
+| Category | Technologies | Responsibility |
+| --- | --- | --- |
+| Database | PostgreSQL | Relational persistence with transactional reliability |
+| ORM | Prisma | Type-safe queries, migrations, and schema evolution |
+| File Storage | Cloudinary | Secure storage/access for medical record attachments |
+
+## Technical Decisions & Best Practices
+
+1. **Layered Architecture (MVC + Service Abstraction)**
+Controllers are focused on request/response orchestration. Business rules are isolated in service layers. Persistence concerns are encapsulated through Prisma-based data access. This separation reduces coupling, improves testability, and supports safer refactoring.
+
+2. **Security By Design**
+Passwords are hashed with bcrypt.js. Stateless authentication is handled with JWT. Role-based access controls constrain sensitive operations. File upload paths enforce MIME/type and size validation. Error handling avoids leaking sensitive internals. The security model was designed to align with medical-data protection expectations.
+
+3. **API Contract Validation**
+Request payload validation is enforced before business execution. Domain constraints are checked at both API and persistence boundaries. Consistent response structures simplify frontend consumption and observability.
+
+4. **Test-Driven Quality Mindset**
+Core logic is covered by unit tests in Jest. Critical flows (auth, records, file handling) are tested against expected and edge-case scenarios.
+
+## Key Features
+
+- Secure role-based authentication with JWT and bcrypt.js.
+- Complete CRUD for patients with strict input and domain validation.
+- Complete CRUD for medical records with structured clinical information.
+- Secure upload pipeline for exam and attachment files linked to records.
+- Fluid user experience with real-time search and responsive navigation.
+- Chronological consultation timeline for fast medical history review.
+
+## Public Disclosure Boundaries (Security-First)
+
+This showcase intentionally shares only artifacts that are safe for public review.
+
+### Included In This Public Repository
+
+- Sanitized architecture and engineering decisions.
+- Redacted API examples and endpoint contracts.
+- Isolated code snippets that do not reveal proprietary logic.
+
+### Never Exposed Publicly
+
+- UI screenshots or screen recordings (to protect proprietary UX workflows).
+- Production credentials, secrets, tokens, or environment values.
+- Real patient data or metadata that could enable re-identification.
+- Internal infrastructure details (private hosts, bucket IDs, firewall rules).
+
+## Live Demonstration (Upon Request)
+
+To ensure absolute compliance with data privacy and to protect proprietary UI and UX workflows of this commercial product, no screenshots or screen recordings are publicly shared in this repository.
+
+However, I am fully available to provide a live, guided demonstration of the application running locally during a technical interview. In this live demo (using strictly synthetic data), I can showcase:
+
+- The role-aware login and access flow.
+- Real-time patient search and medical timeline navigation.
+- The exam attachment upload pipeline.
+- The underlying codebase structure and database queries.
+
+## API Documentation (Showcase-Safe)
+
+The API is documented using Swagger/OpenAPI with a sanitized, recruiter-friendly contract.
+
+Note: The full interactive Swagger UI is kept behind authentication in the production environment. A local instance of the OpenAPI documentation can be presented during the live technical demonstration.
+
+### OpenAPI Example (Sanitized)
+
+```yaml
+paths:
   /patients:
     post:
       summary: Create a patient
@@ -83,7 +173,16 @@ Frontend LayerCategoryTechnologiesResponsibilityUI FrameworkReact.jsComponent-ba
       responses:
         '201':
           description: Patient created
-Code Glimpses (Sanitized)The snippets below are intentionally sanitized and simplified to demonstrate coding style, architecture organization, and security practices without exposing proprietary or sensitive data.1. Prisma Domain Modeling (Example)Snippet de códigomodel User {
+```
+
+## Code Glimpses (Sanitized)
+
+The snippets below are intentionally sanitized and simplified to demonstrate coding style, architecture organization, and security practices without exposing proprietary or sensitive data.
+
+### 1. Prisma Domain Modeling (Example)
+
+```prisma
+model User {
   id           String   @id @default(uuid())
   email        String   @unique
   passwordHash String
@@ -111,7 +210,12 @@ model MedicalRecord {
 
   patient Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
 }
-2. Controller-to-Service Pattern (Example)JavaScript// controllers/patientController.js
+```
+
+### 2. Controller-to-Service Pattern (Example)
+
+```javascript
+// controllers/patientController.js
 import * as patientService from '../services/patientService.js';
 
 export async function createPatient(req, res, next) {
@@ -148,4 +252,10 @@ export async function createPatient(payload, actor) {
     },
   });
 }
-Project: HealthCare SaaS Platform (Showcase)Repository: medical-saas-showcaseRole: Full Stack Developer & Solutions Architect
+```
+
+## Project Snapshot
+
+- Project: HealthCare SaaS Platform (Showcase)
+- Repository: medical-saas-showcase
+- Role: Full Stack Developer & Solutions Architect
